@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jude Jiwoo Ryu - AI Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #3182ce;
+            --text: #2d3748;
+            --text-light: #4a5568;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 60px 0 80px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .header-info h1 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-info .subtitle {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .contact-links a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .contact-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .contact-links svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0 80px;
+        }
+
+        section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 32px 36px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        section p {
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Research Interests */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .interest-item {
+            background: var(--bg);
+            padding: 16px 20px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .interest-item h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .interest-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Publications */
+        .pub-list {
+            list-style: none;
+        }
+
+        .pub-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pub-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .pub-venue {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .pub-venue.under-review {
+            background: var(--text-light);
+        }
+
+        .pub-title {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .pub-authors {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
+        .pub-note {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Experience */
+        .exp-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exp-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .exp-item:first-child {
+            padding-top: 0;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .exp-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+
+        .exp-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .exp-org {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .exp-bullets {
+            list-style: disc;
+            margin-left: 20px;
+            color: var(--text-light);
+        }
+
+        .exp-bullets li {
+            padding: 4px 0;
+            border-bottom: none;
+        }
+
+        /* Education */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .edu-item:last-child {
+            border-bottom: none;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .edu-school {
+            color: var(--text-light);
+        }
+
+        .edu-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .edu-gpa {
+            background: var(--bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Awards */
+        .award-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            gap: 16px;
+        }
+
+        .award-item:last-child {
+            border-bottom: none;
+        }
+
+        .award-year {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .award-content h4 {
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .award-content p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: var(--bg);
+            color: var(--text);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-img {
+                margin: 0 auto;
+                width: 150px;
+                height: 150px;
+            }
+
+            .contact-links {
+                justify-content: center;
+            }
+
+            .header-info h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 24px 20px;
+            }
+
+            .exp-header {
+                flex-direction: column;
+            }
+
+            .edu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="assets/img/profile.jpg" alt="Jude Jiwoo Ryu" class="profile-img">
+                <div class="header-info">
+                    <h1>Jude Jiwoo Ryu</h1>
+                    <p class="subtitle">Ph.D. Student in Artificial Intelligence, Sogang University</p>
+                    <div class="contact-links">
+                        <a href="mailto:jude.jiwoo.musicai@gmail.com">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+                            jude.jiwoo.musicai@gmail.com
+                        </a>
+                        <a href="https://github.com/JudeJiwoo" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/jiwoo-jude-ryu" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M243.4 2.6l-224 96c-14 6-21.8 21-18.7 35.8S16.8 160 32 160v8c0 13.3 10.7 24 24 24H456c13.3 0 24-10.7 24-24v-8c15.2 0 28.3-10.7 31.3-25.6s-4.7-29.8-18.7-35.8l-224-96c-8-3.4-17.2-3.4-25.2 0zM128 224H64V420.3c-.6 .3-1.2 .7-1.8 1.1l-48 32c-11.7 7.8-17 22.4-12.9 35.9S17.9 512 32 512H480c14.1 0 26.5-9.2 30.6-22.7s-1.1-28.1-12.9-35.9l-48-32c-.6-.4-1.2-.7-1.8-1.1V224H384V416H344V224H280V416H232V224H168V416H128V224z"/></svg>
+                            Google Scholar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- About -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                I am a Ph.D. student in Artificial Intelligence at Sogang University, Seoul, working under the supervision of 
+                <a href="https://duseongchang.github.io/" target="_blank">Prof. Du-Seong Chang</a>. My research focuses on 
+                <strong>Multimodal Large Language Models</strong>, <strong>Generative AI</strong>, and <strong>Music/Audio Information Retrieval</strong>.
+            </p>
+            <p>
+                Currently, I am leading a government-funded research project ($4.7M) on Video-to-Audio Generation as part of the 
+                IITP Professional AI Talent Development Program for Multimodal AI Agents. My recent work includes developing 
+                query-robust multimodal retrieval models and hallucination detection systems for Multimodal LLMs.
+            </p>
+            <p>
+                Beyond research, I have extensive experience in <strong>ML infrastructure management</strong>, having administered 
+                distributed GPU server clusters and containerized environments for our lab during my master's studies. I also 
+                contributed to national AI data construction projects with NIA.
+            </p>
+        </section>
+
+        <!-- Research Interests -->
+        <section id="research">
+            <h2>Research Interests</h2>
+            <div class="interests-grid">
+                <div class="interest-item">
+                    <h4>Multimodal LLMs</h4>
+                    <p>Vision-Language Models, Hallucination Detection, Multimodal Retrieval</p>
+                </div>
+                <div class="interest-item">
+                    <h4>Generative AI</h4>
+                    <p>Video-to-Audio Generation, Music Generation, Diffusion Models</p>
+                </div>
+                <div class="interest-item">
+                    <h4>Music Information Retrieval</h4>
+                    <p>Symbolic Music Generation, Audio Signal Processing, Music Transformers</p>
+                </div>
+                <div class="interest-item">
+                    <h4>NLP & Reasoning</h4>
+                    <p>Large Language Models, Semantic Understanding, Knowledge Retrieval</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications">
+            <h2>Publications</h2>
+            <ul class="pub-list">
+                <li>
+                    <span class="pub-venue">ISMIR 2024</span>
+                    <span class="pub-title">"Nested Music Transformer: Sequentially Decoding Compound Tokens in Symbolic Music and Audio Generation"</span>
+                    <div class="pub-authors"><strong>Jiwoo Ryu</strong>, Hao-Wen Dong, Jongmin Jung, Dasaem Jeong <span class="pub-note">(First Author)</span></div>
+                </li>
+                <li>
+                    <span class="pub-venue">ISMIR 2025</span>
+                    <span class="pub-title">"On the De-duplication of the Lakh MIDI Dataset"</span>
+                    <div class="pub-authors">Eunjin Choi, Hyerin Kim, <strong>Jiwoo Ryu</strong>, Dasaem Jeong</div>
+                </li>
+                <li>
+                    <span class="pub-venue under-review">ACL 2026 (Under Review)</span>
+                    <span class="pub-title">"Query-robust Multimodal Retrieval Model based on Multimodal LLMs"</span>
+                    <div class="pub-authors"><strong>Jiwoo Ryu</strong>, In-Seong Lee, Tae-Young Jeong, Du-Seong Chang</div>
+                </li>
+                <li>
+                    <span class="pub-venue under-review">ACL 2026 (Under Review)</span>
+                    <span class="pub-title">"Hallucination Detection of Multimodal LLMs"</span>
+                    <div class="pub-authors"><strong>Jiwoo Ryu</strong> et al.</div>
+                </li>
+                <li>
+                    <span class="pub-venue">Arxiv 2025</span>
+                    <span class="pub-title">"Pattern-Based Encoding for Symbolic Music Generation"</span>
+                    <div class="pub-authors"><strong>Jude Ryu</strong>, Hannah Park, Seola Cho</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience">
+            <h2>Experience</h2>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Project Lead, Video-to-Audio Generation</span>
+                    <span class="exp-date">Aug 2025 – Present</span>
+                </div>
+                <div class="exp-org">IITP Professional AI Talent Development Program for Multimodal AI Agents (Funded by IITP, Korea Government / Total: $4.7M)</div>
+                <ul class="exp-bullets">
+                    <li>Leading multimodal AI research for video-conditioned audio synthesis</li>
+                    <li>Developing state-of-the-art models for temporal audio-visual alignment</li>
+                    <li>Managing cross-functional team of researchers in nationally funded initiative</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">ML Infrastructure Administrator</span>
+                    <span class="exp-date">Aug 2022 – Aug 2024</span>
+                </div>
+                <div class="exp-org">Sogang University AI Lab</div>
+                <ul class="exp-bullets">
+                    <li>Managed distributed GPU server cluster (multi-node) using Docker containerization for 20+ researchers</li>
+                    <li>Planned and deployed hardware resources (GPUs, memory, storage) for large-scale AI training workloads</li>
+                    <li>Maintained Ubuntu servers, optimized CUDA environments, and ensured system reliability</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Data Labeling Project Contributor</span>
+                    <span class="exp-date">2022 – 2023</span>
+                </div>
+                <div class="exp-org">NIA (National Information Society Agency) - 가상 공간 환경음 매칭 데이터 구축</div>
+                <ul class="exp-bullets">
+                    <li>Contributed to government-funded AI data construction project for virtual space environmental sound matching</li>
+                    <li>Developed data processing pipelines and quality assurance protocols for audio-visual datasets</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Audio Production Engineer</span>
+                    <span class="exp-date">Jun 2019 – Mar 2023</span>
+                </div>
+                <div class="exp-org">Seoul, Republic of Korea</div>
+                <ul class="exp-bullets">
+                    <li>Developed end-to-end audio production pipelines for commercial music releases</li>
+                    <li>Applied advanced signal processing and mixing techniques across 10+ commercial projects</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education">
+            <h2>Education</h2>
+            
+            <div class="edu-item">
+                <div>
+                    <span class="edu-degree">Ph.D. in Artificial Intelligence</span>
+                    <span class="edu-school"> – Sogang University, Seoul</span>
+                </div>
+                <span class="edu-date">Sep 2024 – Present</span>
+                <span class="edu-gpa">GPA: 4.3/4.3</span>
+            </div>
+
+            <div class="edu-item">
+                <div>
+                    <span class="edu-degree">M.S. in Artificial Intelligence</span>
+                    <span class="edu-school"> – Sogang University, Seoul</span>
+                </div>
+                <span class="edu-date">Aug 2022 – Aug 2024</span>
+                <span class="edu-gpa">GPA: 4.0/4.3</span>
+            </div>
+
+            <div class="edu-item">
+                <div>
+                    <span class="edu-degree">B.S. in Art and Technology</span>
+                    <span class="edu-school"> – Sogang University, Seoul</span>
+                </div>
+                <span class="edu-date">Aug 2012 – Aug 2018</span>
+                <span class="edu-gpa">Cum Laude</span>
+            </div>
+        </section>
+
+        <!-- Honors & Awards -->
+        <section id="awards">
+            <h2>Honors & Awards</h2>
+            
+            <div class="award-item">
+                <span class="award-year">2024</span>
+                <div class="award-content">
+                    <h4>Guest Lecture – University of Michigan</h4>
+                    <p>"Symbolic Music Generation and Nested Music Transformer"</p>
+                </div>
+            </div>
+
+            <div class="award-item">
+                <span class="award-year">2024</span>
+                <div class="award-content">
+                    <h4>Invited Seminar – National Taiwan University</h4>
+                    <p>Music and AI Laboratory</p>
+                </div>
+            </div>
+
+            <div class="award-item">
+                <span class="award-year">2022</span>
+                <div class="award-content">
+                    <h4>AI Music Generation Challenge 2022</h4>
+                    <p>1st Place in Music Generation Task</p>
+                </div>
+            </div>
+
+            <div class="award-item">
+                <span class="award-year">2022-24</span>
+                <div class="award-content">
+                    <h4>Smilgate Scholarship</h4>
+                    <p>Digital Human & Entertainment Track ($27,000)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>ML & AI</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">Diffusion Models</span>
+                        <span class="skill-tag">LLMs</span>
+                        <span class="skill-tag">Multimodal Learning</span>
+                        <span class="skill-tag">Audio Processing</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Infrastructure</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Linux Server Admin</span>
+                        <span class="skill-tag">Distributed GPU</span>
+                        <span class="skill-tag">CUDA</span>
+                        <span class="skill-tag">Hardware Planning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Tools & Libraries</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">HTML/CSS/JS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">librosa</span>
+                        <span class="skill-tag">torchaudio</span>
+                        <span class="skill-tag">W&B</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Certifications -->
+        <section id="certifications">
+            <h2>Certifications</h2>
+            
+            <div class="award-item">
+                <span class="award-year" style="background: #76b900; min-width: 80px;">NVIDIA</span>
+                <div class="award-content">
+                    <h4>Building Conversational AI Applications</h4>
+                    <p>NVIDIA Deep Learning Institute (DLI)</p>
+                </div>
+            </div>
+
+            <div class="award-item">
+                <span class="award-year" style="background: #76b900; min-width: 80px;">NVIDIA</span>
+                <div class="award-content">
+                    <h4>Building Transformer-Based Natural Language Processing Applications</h4>
+                    <p>NVIDIA Deep Learning Institute (DLI)</p>
+                </div>
+            </div>
+
+            <div class="award-item">
+                <span class="award-year" style="background: #76b900; min-width: 80px;">NVIDIA</span>
+                <div class="award-content">
+                    <h4>Rapid Application Development with Large Language Models (LLMs)</h4>
+                    <p>NVIDIA Deep Learning Institute (DLI)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Jude Jiwoo Ryu. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
